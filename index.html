@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ty10y</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:            #050e05;
+      --surface:       rgba(8, 26, 8, 0.58);
+      --surface-hover: rgba(13, 40, 13, 0.82);
+      --green:         #4ade80;
+      --green-muted:   #86efac;
+      --green-dim:     rgba(74, 222, 128, 0.11);
+      --border:        rgba(74, 222, 128, 0.1);
+      --border-hover:  rgba(74, 222, 128, 0.35);
+      --text:          #f0fdf4;
+      --text-muted:    #a7f3d0;
+    }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Ambient glow */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 65% 45% at 12% 18%, rgba(34, 197, 94, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 55% 65% at 88% 78%, rgba(21, 128, 61, 0.10) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Floating leaves ── */
+    .leaves-wrap {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .leaf {
+      position: absolute;
+      top: -80px;
+      animation: leaf-fall linear infinite;
+    }
+
+    @keyframes leaf-fall {
+      0%   { transform: translateY(0)     translateX(0)                 rotate(0deg);           opacity: 0; }
+      6%   { opacity: var(--op, 0.09); }
+      92%  { opacity: var(--op, 0.09); }
+      100% { transform: translateY(108vh) translateX(var(--dx, 50px))  rotate(var(--rot, 400deg)); opacity: 0; }
+    }
+
+    .leaf:nth-child(1)  { left:  7%; width: 26px; --op:.08; --dx: 44px;  --rot: 380deg;  animation-duration:18s; animation-delay:   0s; }
+    .leaf:nth-child(2)  { left: 20%; width: 17px; --op:.10; --dx:-28px;  --rot:-290deg;  animation-duration:23s; animation-delay:  -5s; }
+    .leaf:nth-child(3)  { left: 35%; width: 22px; --op:.09; --dx: 52px;  --rot: 410deg;  animation-duration:19s; animation-delay: -11s; }
+    .leaf:nth-child(4)  { left: 52%; width: 30px; --op:.07; --dx:-42px;  --rot:-350deg;  animation-duration:26s; animation-delay:  -3s; }
+    .leaf:nth-child(5)  { left: 68%; width: 19px; --op:.11; --dx: 33px;  --rot: 460deg;  animation-duration:16s; animation-delay:  -8s; }
+    .leaf:nth-child(6)  { left: 84%; width: 25px; --op:.08; --dx:-48px;  --rot:-320deg;  animation-duration:21s; animation-delay: -14s; }
+    .leaf:nth-child(7)  { left: 13%; width: 20px; --op:.09; --dx: 62px;  --rot: 340deg;  animation-duration:24s; animation-delay: -19s; }
+    .leaf:nth-child(8)  { left: 46%; width: 15px; --op:.12; --dx:-22px;  --rot:-400deg;  animation-duration:17s; animation-delay:  -4s; }
+    .leaf:nth-child(9)  { left: 60%; width: 28px; --op:.07; --dx: 43px;  --rot: 390deg;  animation-duration:22s; animation-delay: -13s; }
+    .leaf:nth-child(10) { left: 91%; width: 18px; --op:.10; --dx:-33px;  --rot:-360deg;  animation-duration:20s; animation-delay:  -7s; }
+    .leaf:nth-child(11) { left: 29%; width: 23px; --op:.08; --dx: 48px;  --rot: 430deg;  animation-duration:25s; animation-delay: -17s; }
+    .leaf:nth-child(12) { left: 75%; width: 21px; --op:.11; --dx:-38px;  --rot:-370deg;  animation-duration:15s; animation-delay:  -2s; }
+
+    /* ── Main layout ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 130px 0 72px;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green);
+      border: 1px solid var(--border-hover);
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 28px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: dot-pulse 2.2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes dot-pulse {
+      0%, 100% { opacity: 1;   transform: scale(1);   }
+      50%       { opacity: 0.3; transform: scale(0.65); }
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(5rem, 17vw, 11rem);
+      font-weight: 400;
+      line-height: 0.9;
+      letter-spacing: -0.025em;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--green);
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 2.3vw, 1.15rem);
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 420px;
+      margin: 0 auto;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .section-label span {
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border-hover), transparent);
+    }
+
+    /* ── Cards ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(74, 222, 128, 0.06) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity .22s ease;
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: var(--border-hover);
+      background: var(--surface-hover);
+      box-shadow:
+        0 20px 52px rgba(0, 0, 0, 0.45),
+        0 0 32px rgba(74, 222, 128, 0.07);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card.wip {
+      opacity: 0.38;
+      pointer-events: none;
+    }
+
+    .card-icon {
+      width: 46px;
+      height: 46px;
+      background: var(--green-dim);
+      border: 1px solid rgba(74, 222, 128, 0.18);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-bottom: 2px;
+    }
+
+    .card h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--text);
+    }
+
+    .card p {
+      font-size: 0.845rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+    }
+
+    .card-tag {
+      font-size: 0.64rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .card-arrow {
+      width: 17px;
+      height: 17px;
+      color: var(--green);
+      opacity: 0.5;
+      flex-shrink: 0;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .card:hover .card-arrow {
+      transform: translate(4px, -4px);
+      opacity: 1;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 540px) {
+      main { padding: 0 16px 80px; }
+      .hero { padding: 90px 0 56px; }
+      .grid { grid-template-columns: 1fr; gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="leaves-wrap" aria-hidden="true">
+    <div class="leaf"><svg viewBox="0 0 30 50" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M15 3C6 10 2 24 5 37C8 46 15 49 15 49C15 49 22 46 25 37C28 24 24 10 15 3Z" fill="#22c55e"/><line x1="15" y1="5" x2="15" y2="47" stroke="#15803d" stroke-width="0.9"/><line x1="15" y1="20" x2="9" y2="31" stroke="#15803d" stroke-width="0.6"/><line x1="15" y1="20" x2="21" y2="31" stroke="#15803d" stroke-width="0.6"/><line x1="15" y1="33" x2="10" y2="42" stroke="#15803d" stroke-width="0.6"/><line x1="15" y1="33" x2="20" y2="42" stroke="#15803d" stroke-width="0.6"/></svg></div>
+    <div class="leaf"><svg viewBox="0 0 28 52" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M14 4C5 12 3 26 6 39C9 47 14 50 14 50C14 50 19 47 22 39C25 26 23 12 14 4Z" fill="#16a34a"/><line x1="14" y1="6" x2="14" y2="48" stroke="#14532d" stroke-width="0.9"/><line x1="14" y1="22" x2="8" y2="33" stroke="#14532d" stroke-width="0.6"/><line x1="14" y1="22" x2="20" y2="33" stroke="#14532d" stroke-width="0.6"/></svg></div>
+    <div class="leaf"><svg viewBox="0 0 34 48" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M17 3C7 9 2 22 5 36C8 45 17 48 17 48C17 48 26 45 29 36C32 22 27 9 17 3Z" fill="#4ade80"/><line x1="17" y1="5" x2="17" y2="46" stroke="#15803d" stroke-width="0.9"/><line x1="17" y1="18" x2="10" y2="29" stroke="#15803d" stroke-width="0.6"/><line x1="17" y1="18" x2="24" y2="29" stroke="#15803d" stroke-width="0.6"/><line x1="17" y1="32" x2="11" y2="41" stroke="#15803d" stroke-width="0.6"/><line x1="17" y1="32" x2="23" y2="41" stroke="#15803d" stroke-width="0.6"/></svg></div>
+    <div class="leaf"><svg viewBox="0 0 30 50" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M15 3C6 10 2 24 5 37C8 46 15 49 15 49C15 49 22 46 25 37C28 24 24 10 15 3Z" fill="#22c55e"/><line x1="15" y1="5" x2="15" y2="47" stroke="#15803d" stroke-width="0.9"/><line x1="15" y1="20" x2="9" y2="31" stroke="#15803d" stroke-width="0.6"/><line x1="15" y1="20" x2="21" y2="31" stroke="#15803d" stroke-width="0.6"/></svg></div>
+    <div class="leaf"><svg viewBox="0 0 28 52" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M14 4C5 12 3 26 6 39C9 47 14 50 14 50C14 50 19 47 22 39C25 26 23 12 14 4Z" fill="#16a34a"/><line x1="14" y1="6" x2="14" y2="48" stroke="#14532d" stroke-width="0.9"/><line x1="14" y1="22" x2="8" y2="33" stroke="#14532d" stroke-width="0.6"/><line x1="14" y1="22" x2="20" y2="33" stroke="#14532d" stroke-width="0.6"/><line x1="14" y1="34" x2="9" y2="43" stroke="#14532d" stroke-width="0.6"/><line x1="14" y1="34" x2="19" y2="43" stroke="#14532d" stroke-width="0.6"/></svg></div>
+    <div class="leaf"><svg viewBox="0 0 34 48" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M17 3C7 9 2 22 5 36C8 45 17 48 17 48C17 48 26 45 29 36C32 22 27 9 17 3Z" fill="#4ade80"/><line x1="17" y1="5" x2="17" y2="46" stroke="#15803d" stroke-width="0.9"/><line x1="17" y1="18" x2="10" y2="29" stroke="#15803d" stroke-width="0.6"/><line x1="17" y1="18" x2="24" y2="29" stroke="#15803d" stroke-width="0.6"/></svg></div>
+    <div class="leaf"><svg viewBox="0 0 30 50" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M15 3C6 10 2 24 5 37C8 46 15 49 15 49C15 49 22 46 25 37C28 24 24 10 15 3Z" fill="#22c55e"/><line x1="15" y1="5" x2="15" y2="47" stroke="#15803d" stroke-width="0.9"/><line x1="15" y1="20" x2="9" y2="31" stroke="#15803d" stroke-width="0.6"/><line x1="15" y1="20" x2="21" y2="31" stroke="#15803d" stroke-width="0.6"/><line x1="15" y1="33" x2="10" y2="42" stroke="#15803d" stroke-width="0.6"/><line x1="15" y1="33" x2="20" y2="42" stroke="#15803d" stroke-width="0.6"/></svg></div>
+    <div class="leaf"><svg viewBox="0 0 28 52" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M14 4C5 12 3 26 6 39C9 47 14 50 14 50C14 50 19 47 22 39C25 26 23 12 14 4Z" fill="#4ade80"/><line x1="14" y1="6" x2="14" y2="48" stroke="#15803d" stroke-width="0.9"/><line x1="14" y1="22" x2="8" y2="33" stroke="#15803d" stroke-width="0.6"/><line x1="14" y1="22" x2="20" y2="33" stroke="#15803d" stroke-width="0.6"/></svg></div>
+    <div class="leaf"><svg viewBox="0 0 34 48" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M17 3C7 9 2 22 5 36C8 45 17 48 17 48C17 48 26 45 29 36C32 22 27 9 17 3Z" fill="#22c55e"/><line x1="17" y1="5" x2="17" y2="46" stroke="#15803d" stroke-width="0.9"/><line x1="17" y1="18" x2="10" y2="29" stroke="#15803d" stroke-width="0.6"/><line x1="17" y1="18" x2="24" y2="29" stroke="#15803d" stroke-width="0.6"/><line x1="17" y1="32" x2="11" y2="41" stroke="#15803d" stroke-width="0.6"/><line x1="17" y1="32" x2="23" y2="41" stroke="#15803d" stroke-width="0.6"/></svg></div>
+    <div class="leaf"><svg viewBox="0 0 30 50" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M15 3C6 10 2 24 5 37C8 46 15 49 15 49C15 49 22 46 25 37C28 24 24 10 15 3Z" fill="#16a34a"/><line x1="15" y1="5" x2="15" y2="47" stroke="#14532d" stroke-width="0.9"/><line x1="15" y1="20" x2="9" y2="31" stroke="#14532d" stroke-width="0.6"/><line x1="15" y1="20" x2="21" y2="31" stroke="#14532d" stroke-width="0.6"/></svg></div>
+    <div class="leaf"><svg viewBox="0 0 28 52" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M14 4C5 12 3 26 6 39C9 47 14 50 14 50C14 50 19 47 22 39C25 26 23 12 14 4Z" fill="#22c55e"/><line x1="14" y1="6" x2="14" y2="48" stroke="#15803d" stroke-width="0.9"/><line x1="14" y1="22" x2="8" y2="33" stroke="#15803d" stroke-width="0.6"/><line x1="14" y1="22" x2="20" y2="33" stroke="#15803d" stroke-width="0.6"/><line x1="14" y1="34" x2="9" y2="43" stroke="#15803d" stroke-width="0.6"/><line x1="14" y1="34" x2="19" y2="43" stroke="#15803d" stroke-width="0.6"/></svg></div>
+    <div class="leaf"><svg viewBox="0 0 34 48" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M17 3C7 9 2 22 5 36C8 45 17 48 17 48C17 48 26 45 29 36C32 22 27 9 17 3Z" fill="#16a34a"/><line x1="17" y1="5" x2="17" y2="46" stroke="#14532d" stroke-width="0.9"/><line x1="17" y1="18" x2="10" y2="29" stroke="#14532d" stroke-width="0.6"/><line x1="17" y1="18" x2="24" y2="29" stroke="#14532d" stroke-width="0.6"/></svg></div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="hero-eyebrow">Portfolio</div>
+      <h1>Ty10<em>y</em></h1>
+      <p class="hero-sub">Building tools for curious minds &amp; green thumbs.</p>
+    </section>
+
+    <div class="section-label"><span>Projects</span></div>
+
+    <div class="grid">
+
+      <a href="https://Ty10y.github.io/Pocket-Weed-Almanac/" class="card">
+        <div class="card-icon">🌿</div>
+        <h2>Pocket Plant Weed Almanac</h2>
+        <p>A field guide for identifying common weeds and wild plants. Know what's growing in your backyard before you pull it out.</p>
+        <div class="card-footer">
+          <span class="card-tag">Plant ID</span>
+          <svg class="card-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+        </div>
+      </a>
+
+      <a href="https://Ty10y.github.io/Garden-Bed-Planner/" class="card">
+        <div class="card-icon">🌱</div>
+        <h2>Garden Bed Planner</h2>
+        <p>Plan your raised beds and garden plots visually. Design your perfect growing space before you break ground.</p>
+        <div class="card-footer">
+          <span class="card-tag">Planning</span>
+          <svg class="card-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+        </div>
+      </a>
+
+      <a href="https://Ty10y.github.io/Gantt-Chart/" class="card">
+        <div class="card-icon">📅</div>
+        <h2>Gantt Chart</h2>
+        <p>A clean, browser-based project timeline tool. Plan milestones and tasks without signing up for anything.</p>
+        <div class="card-footer">
+          <span class="card-tag">Productivity</span>
+          <svg class="card-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+        </div>
+      </a>
+
+      <a href="https://ty10y.github.io/Poison-Ivy-ID/" class="card">
+        <div class="card-icon">🍃</div>
+        <h2>Poison Ivy ID Quiz</h2>
+        <p>Think you can spot poison ivy in the wild? Test your eye with real photos and find out before it's too late.</p>
+        <div class="card-footer">
+          <span class="card-tag">Quiz</span>
+          <svg class="card-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
+        </div>
+      </a>
+
+      <div class="card wip">
+        <div class="card-icon">🔬</div>
+        <h2>In Development</h2>
+        <p>Something new is growing. Check back soon.</p>
+        <div class="card-footer">
+          <span class="card-tag">Coming Soon</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
