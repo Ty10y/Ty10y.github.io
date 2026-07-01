@@ -7,4 +7,5 @@ This is my personal landing page for all my github projects. See list below for 
 | Garden Bed Planner        | <https://Ty10y.github.io/Garden-Bed-Planner/>  |
 | Gantt Chart               | <https://Ty10y.github.io/Gantt-Chart/>         |
 | Poison Ivy ID Quiz        | <https://ty10y.github.io/Poison-Ivy-ID/>       |
+| Icon Cropping Tool        | <https://ty10y.github.io/Icon-Cropping-Tool/>  |
 | *In Development*          | *TBD*                                          |
