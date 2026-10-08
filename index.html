@@ -4,6 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ty10y</title>
+  <meta name="description" content="Ty10y's projects: single-file browser tools, garden and plant apps, and Minecraft mods.">
+  <meta name="theme-color" content="#050e05">
+  <link rel="canonical" href="https://ty10y.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ty10y">
+  <meta property="og:title" content="Ty10y: Projects">
+  <meta property="og:description" content="Single-file browser tools, garden and plant apps, and Minecraft mods.">
+  <meta property="og:url" content="https://ty10y.github.io/">
+  <meta property="og:image" content="https://ty10y.github.io/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ty10y: browser tools, garden apps, and Minecraft mods">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ty10y: Projects">
+  <meta name="twitter:description" content="Single-file browser tools, garden and plant apps, and Minecraft mods.">
+  <meta name="twitter:image" content="https://ty10y.github.io/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -167,12 +183,23 @@
       letter-spacing: 0.01em;
     }
 
+    .hero-about {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--green-muted);
+      opacity: 0.8;
+      max-width: 520px;
+      margin: 14px auto 0;
+    }
+
     /* ── Section label ── */
     .section-label {
       display: flex;
       align-items: center;
       gap: 14px;
       margin-bottom: 26px;
+      font-size: inherit;
+      font-weight: inherit;
     }
 
     .section-label span {
@@ -236,11 +263,6 @@
 
     .card:hover::before { opacity: 1; }
 
-    .card.wip {
-      opacity: 0.38;
-      pointer-events: none;
-    }
-
     .card-icon {
       width: 46px;
       height: 46px;
@@ -256,7 +278,7 @@
       margin-bottom: 2px;
     }
 
-    .card h2 {
+    .card h3 {
       font-size: 1rem;
       font-weight: 600;
       line-height: 1.3;
@@ -300,11 +322,244 @@
       opacity: 1;
     }
 
+    /* ── Badges ── */
+    .badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 999px;
+      line-height: 1.2;
+    }
+
+    .badge-new {
+      background: var(--green);
+      color: #052e16;
+    }
+
+    .badge-updated {
+      border: 1px solid var(--border-hover);
+      color: var(--green-muted);
+    }
+
+    /* ── Card buttons (mods) ── */
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+      position: relative;
+    }
+
+    .btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border-hover);
+      color: var(--green);
+      background: transparent;
+      transition: background .18s ease, border-color .18s ease, color .18s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover { background: var(--green-dim); border-color: var(--green); }
+
+    .btn-primary {
+      background: var(--green);
+      border-color: var(--green);
+      color: #052e16;
+    }
+
+    .btn-primary:hover { background: var(--green-muted); border-color: var(--green-muted); }
+
+    .btn:focus-visible, .card:focus-visible, .chip:focus-visible, .slide-nav:focus-visible, .dot:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 2px;
+    }
+
+    /* ── Featured slideshow ── */
+    .featured { margin-bottom: 72px; }
+
+    .slides-viewport {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border-hover);
+      border-radius: 22px;
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 0 40px rgba(74, 222, 128, 0.06);
+    }
+
+    .slides {
+      display: flex;
+      transition: transform .55s cubic-bezier(.22, .8, .3, 1);
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      min-width: 0;
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 34px;
+      align-items: center;
+      padding: 44px 52px 76px;
+      background: radial-gradient(ellipse 70% 90% at 0% 0%, rgba(74, 222, 128, 0.08) 0%, transparent 70%);
+    }
+
+    .slide-icon {
+      width: 112px;
+      height: 112px;
+      border-radius: 26px;
+      background: var(--green-dim);
+      border: 1px solid rgba(74, 222, 128, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      line-height: 1;
+    }
+
+    .slide-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .slide-meta .badge { position: static; }
+
+    .slide h3 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(1.8rem, 4.4vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+
+    .slide p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 540px;
+      margin-bottom: 22px;
+    }
+
+    .slide .card-actions { max-width: 360px; }
+
+    .slide-controls {
+      position: absolute;
+      left: 52px;
+      right: 52px;
+      bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dots { display: flex; gap: 8px; }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      border: 0;
+      padding: 0;
+      background: var(--border-hover);
+      cursor: pointer;
+      transition: width .25s ease, background .25s ease;
+    }
+
+    .dot[aria-current="true"] { width: 24px; background: var(--green); }
+
+    .slide-navs { display: flex; gap: 8px; }
+
+    .slide-nav {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border-hover);
+      background: transparent;
+      color: var(--green);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .18s ease;
+    }
+
+    .slide-nav:hover { background: var(--green-dim); }
+    .slide-nav svg { width: 14px; height: 14px; }
+
+    /* ── Filter chips ── */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+
+    .chip {
+      font: inherit;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 14px;
+      cursor: pointer;
+      transition: border-color .18s ease, background .18s ease, color .18s ease;
+    }
+
+    .chip:hover { border-color: var(--border-hover); color: var(--text); }
+
+    .chip[aria-pressed="true"] {
+      background: var(--green-dim);
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .chip-count { opacity: 0.55; margin-left: 4px; }
+
+    /* ── Category sections ── */
+    .category { margin-bottom: 56px; }
+    .category[hidden], .card[hidden] { display: none; }
+
     /* ── Responsive ── */
+    @media (max-width: 680px) {
+      .slide {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 30px 24px 74px;
+      }
+      .slide-icon { width: 72px; height: 72px; font-size: 36px; border-radius: 18px; }
+      .slide-controls { left: 24px; right: 24px; }
+    }
+
     @media (max-width: 540px) {
       main { padding: 0 16px 80px; }
       .hero { padding: 90px 0 56px; }
       .grid { grid-template-columns: 1fr; gap: 14px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slides { transition: none; }
+      .card, .card-arrow { transition: none; }
     }
   </style>
 </head>
@@ -342,103 +597,326 @@
       <div class="hero-eyebrow">Portfolio</div>
       <h1>Ty10<em>y</em></h1>
       <p class="hero-sub">Building tools for curious minds &amp; green thumbs.</p>
+      <p class="hero-about">I'm an electrical engineer who builds single-file browser tools, hardware projects, and Minecraft mods.</p>
     </section>
 
-    <div class="section-label"><span>Projects</span></div>
-
-    <div class="grid">
-
-      <a href="https://Ty10y.github.io/Pocket-Weed-Almanac/" class="card">
-        <div class="card-icon">🌿</div>
-        <h2>Pocket Plant Weed Almanac</h2>
-        <p>A field guide for identifying common weeds and wild plants. Know what's growing in your backyard before you pull it out.</p>
-        <div class="card-footer">
-          <span class="card-tag">Plant ID</span>
-          <svg class="card-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
-        </div>
-      </a>
-
-      <a href="https://Ty10y.github.io/Garden-Bed-Planner/" class="card">
-        <div class="card-icon">🌱</div>
-        <h2>Garden Bed Planner</h2>
-        <p>Plan your raised beds and garden plots visually. Design your perfect growing space before you break ground.</p>
-        <div class="card-footer">
-          <span class="card-tag">Planning</span>
-          <svg class="card-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
-        </div>
-      </a>
-
-      <a href="https://Ty10y.github.io/Gantt-Chart/" class="card">
-        <div class="card-icon">📅</div>
-        <h2>Gantt Chart</h2>
-        <p>A clean, browser-based project timeline tool. Plan milestones and tasks without signing up for anything.</p>
-        <div class="card-footer">
-          <span class="card-tag">Productivity</span>
-          <svg class="card-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
-        </div>
-      </a>
-
-      <a href="https://ty10y.github.io/Poison-Ivy-ID/" class="card">
-        <div class="card-icon">🍃</div>
-        <h2>Poison Ivy ID Quiz</h2>
-        <p>Think you can spot poison ivy in the wild? Test your eye with real photos and find out before it's too late.</p>
-        <div class="card-footer">
-          <span class="card-tag">Quiz</span>
-          <svg class="card-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
-        </div>
-      </a>
-
-      <a href="https://ty10y.github.io/Scrolling-Text/" class="card">
-        <div class="card-icon">📺</div>
-        <h2>Scrolling Text</h2>
-        <p>A full-screen marquee sign you can customize and share. Set your message, pick a color, dial in the speed, and send the URL to anyone.</p>
-        <div class="card-footer">
-          <span class="card-tag">Tool</span>
-          <svg class="card-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
-        </div>
-      </a>
-
-      <a href="https://ty10y.github.io/Icon-Cropping-Tool/" class="card">
-        <div class="card-icon">✂️</div>
-        <h2>Icon Cropping Tool</h2>
-        <p>Drop in an image, crop it, and export a crisp icon at exactly the size you need — 32, 64, 128, or 256 pixels.</p>
-        <div class="card-footer">
-          <span class="card-tag">Tool</span>
-          <svg class="card-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
-        </div>
-      </a>
-
-      <a href="https://github.com/Ty10y/Arrow-Fletching" class="card">
-        <div class="card-icon">🏹</div>
-        <h2>Arrow Fletching</h2>
-        <p>A NeoForge mod for Minecraft adding 30 craftable arrows — TNT, lightning, ender, mining tiers and more — each with custom art and its own effect.</p>
-        <div class="card-footer">
-          <span class="card-tag">Minecraft Mod</span>
-          <svg class="card-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
-        </div>
-      </a>
-
-      <a href="https://ty10y.github.io/Draw-SVG/" class="card">
-        <div class="card-icon">✏️</div>
-        <h2>Draw SVG</h2>
-        <p>A site to draw SVGs directly in-browser. Supports import, export, download SVG and sharing directly in the url.</p>
-        <div class="card-footer">
-          <span class="card-tag">Tool</span>
-          <svg class="card-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>
-        </div>
-      </a>
-
-      <div class="card wip">
-        <div class="card-icon">🔬</div>
-        <h2>In Development</h2>
-        <p>Something new is growing. Check back soon.</p>
-        <div class="card-footer">
-          <span class="card-tag">Coming Soon</span>
+    <section class="featured" aria-roledescription="carousel" aria-label="Latest projects">
+      <h2 class="section-label"><span>Latest</span></h2>
+      <div class="slides-viewport" id="featured">
+        <div class="slides" id="slides"></div>
+        <div class="slide-controls">
+          <div class="dots" id="dots" role="group" aria-label="Choose slide"></div>
+          <div class="slide-navs">
+            <button class="slide-nav" id="prev" type="button" aria-label="Previous project"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg></button>
+            <button class="slide-nav" id="next" type="button" aria-label="Next project"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg></button>
+          </div>
         </div>
       </div>
+    </section>
 
-    </div>
+    <h2 class="section-label"><span>Projects</span></h2>
+    <div class="filters" id="filters" role="group" aria-label="Filter projects by tag"></div>
+    <div id="categories"></div>
+
+    <noscript>
+      <p class="hero-about">This page needs JavaScript to list projects. Browse them on <a href="https://github.com/Ty10y" style="color: var(--green)">GitHub</a>.</p>
+    </noscript>
   </main>
+
+  <!--
+    Project list. To add a project, add one object to this array.
+      title, url, icon, desc, tag : shown on the card
+      category : "garden" | "tools" | "mods" (see CATEGORIES in the script below)
+      added    : YYYY-MM-DD. Projects added in the last 30 days get a "New" badge;
+                 the 3 most recently added are featured in the slideshow.
+      updated  : optional YYYY-MM-DD. Shows an "Updated" badge for 30 days.
+      source   : optional GitHub repo URL. Mods show a Source button.
+      download : optional download page (e.g. CurseForge). Mods without one
+                 fall back to the repo's latest GitHub release.
+  -->
+  <script type="application/json" id="projects-data">
+  [
+    {
+      "title": "Torch Slot",
+      "url": "https://github.com/Ty10y/Torch-Slot",
+      "source": "https://github.com/Ty10y/Torch-Slot",
+      "download": "",
+      "icon": "🔦",
+      "desc": "A NeoForge mod that adds a light slot to your inventory. Equip a torch or lantern and light up the world around you as you move.",
+      "tag": "Minecraft Mod",
+      "category": "mods",
+      "added": "2026-10-08"
+    },
+    {
+      "title": "Player Maps",
+      "url": "https://github.com/Ty10y/Player-Maps",
+      "source": "https://github.com/Ty10y/Player-Maps",
+      "download": "https://www.curseforge.com/minecraft/mc-mods/player-maps",
+      "icon": "🗺️",
+      "desc": "A NeoForge mod that adds a map bound to one player that stays centered on them. Built for co-op, with a shared atlas the whole server fills in.",
+      "tag": "Minecraft Mod",
+      "category": "mods",
+      "added": "2026-09-30"
+    },
+    {
+      "title": "Draw SVG",
+      "url": "https://ty10y.github.io/Draw-SVG/",
+      "icon": "✏️",
+      "desc": "A site to draw SVGs directly in-browser. Supports import, export, download SVG and sharing directly in the url.",
+      "tag": "Tool",
+      "category": "tools",
+      "added": "2026-09-01",
+      "updated": "2026-09-15"
+    },
+    {
+      "title": "Arrow Fletching",
+      "url": "https://github.com/Ty10y/Arrow-Fletching",
+      "source": "https://github.com/Ty10y/Arrow-Fletching",
+      "download": "https://www.curseforge.com/minecraft/mc-mods/arrow-fletching",
+      "icon": "🏹",
+      "desc": "A NeoForge mod for Minecraft adding 30 craftable arrows — TNT, lightning, ender, mining tiers and more — each with custom art and its own effect.",
+      "tag": "Minecraft Mod",
+      "category": "mods",
+      "added": "2026-08-30",
+      "updated": "2026-09-19"
+    },
+    {
+      "title": "Icon Cropping Tool",
+      "url": "https://ty10y.github.io/Icon-Cropping-Tool/",
+      "icon": "✂️",
+      "desc": "Drop in an image, crop it, and export a crisp icon at exactly the size you need — 32, 64, 128, or 256 pixels.",
+      "tag": "Tool",
+      "category": "tools",
+      "added": "2026-07-01"
+    },
+    {
+      "title": "Scrolling Text",
+      "url": "https://ty10y.github.io/Scrolling-Text/",
+      "icon": "📺",
+      "desc": "A full-screen marquee sign you can customize and share. Set your message, pick a color, dial in the speed, and send the URL to anyone.",
+      "tag": "Tool",
+      "category": "tools",
+      "added": "2026-06-09"
+    },
+    {
+      "title": "Poison Ivy ID Quiz",
+      "url": "https://ty10y.github.io/Poison-Ivy-ID/",
+      "icon": "🍃",
+      "desc": "Think you can spot poison ivy in the wild? Test your eye with real photos and find out before it's too late.",
+      "tag": "Quiz",
+      "category": "garden",
+      "added": "2026-06-01"
+    },
+    {
+      "title": "Gantt Chart",
+      "url": "https://Ty10y.github.io/Gantt-Chart/",
+      "icon": "📅",
+      "desc": "A clean, browser-based project timeline tool. Plan milestones and tasks without signing up for anything.",
+      "tag": "Productivity",
+      "category": "tools",
+      "added": "2026-06-01",
+      "updated": "2026-09-23"
+    },
+    {
+      "title": "Garden Bed Planner",
+      "url": "https://Ty10y.github.io/Garden-Bed-Planner/",
+      "icon": "🌱",
+      "desc": "Plan your raised beds and garden plots visually. Design your perfect growing space before you break ground.",
+      "tag": "Planning",
+      "category": "garden",
+      "added": "2026-06-01"
+    },
+    {
+      "title": "Pocket Plant Weed Almanac",
+      "url": "https://Ty10y.github.io/Pocket-Weed-Almanac/",
+      "icon": "🌿",
+      "desc": "A field guide for identifying common weeds and wild plants. Know what's growing in your backyard before you pull it out.",
+      "tag": "Plant ID",
+      "category": "garden",
+      "added": "2026-06-01"
+    }
+  ]
+  </script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // Section order and headings. A project whose category isn't listed
+      // here gets its own section, headed by the raw category name.
+      var CATEGORIES = [
+        { id: 'garden', label: 'Outdoors & Garden' },
+        { id: 'tools',  label: 'Browser Tools' },
+        { id: 'mods',   label: 'Minecraft Mods' },
+      ];
+      var FEATURED_COUNT = 3;
+      var BADGE_DAYS     = 30;
+      var SLIDE_MS       = 6000;
+
+      var ARROW = '<svg class="card-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg>';
+
+      var projects = JSON.parse(document.getElementById('projects-data').textContent);
+
+      function esc(s) {
+        return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      function daysAgo(dateStr) {
+        if (!dateStr) return Infinity;
+        var d = new Date(dateStr + 'T00:00:00');
+        return (Date.now() - d.getTime()) / 86400000;
+      }
+
+      function badgeFor(p) {
+        if (daysAgo(p.added) <= BADGE_DAYS)   return '<span class="badge badge-new">New</span>';
+        if (daysAgo(p.updated) <= BADGE_DAYS) return '<span class="badge badge-updated">Updated</span>';
+        return '';
+      }
+
+      // Mods (anything with a source repo) get Download + Source buttons.
+      function actionsFor(p) {
+        if (!p.source) return '';
+        var dl = p.download || (p.source.replace(/\/$/, '') + '/releases/latest');
+        var dlLabel = /curseforge\.com/i.test(dl) ? 'Download · CurseForge' : 'Download';
+        return '<div class="card-actions">' +
+          '<a class="btn btn-primary" href="' + esc(dl) + '">' + dlLabel + '</a>' +
+          '<a class="btn" href="' + esc(p.source) + '">Source · GitHub</a>' +
+          '</div>';
+      }
+
+      function cardHTML(p) {
+        var inner =
+          badgeFor(p) +
+          '<div class="card-icon">' + esc(p.icon) + '</div>' +
+          '<h3>' + esc(p.title) + '</h3>' +
+          '<p>' + esc(p.desc) + '</p>';
+        if (p.source) {
+          return '<article class="card" data-tag="' + esc(p.tag) + '">' + inner +
+            '<div class="card-footer"><span class="card-tag">' + esc(p.tag) + '</span></div>' +
+            actionsFor(p) + '</article>';
+        }
+        return '<a href="' + esc(p.url) + '" class="card" data-tag="' + esc(p.tag) + '">' + inner +
+          '<div class="card-footer"><span class="card-tag">' + esc(p.tag) + '</span>' + ARROW + '</div></a>';
+      }
+
+      // ── Category sections ──
+      var cats = CATEGORIES.slice();
+      projects.forEach(function (p) {
+        if (!cats.some(function (c) { return c.id === p.category; })) {
+          cats.push({ id: p.category, label: p.category || 'Other' });
+        }
+      });
+
+      document.getElementById('categories').innerHTML = cats.map(function (c) {
+        var items = projects.filter(function (p) { return p.category === c.id; });
+        if (!items.length) return '';
+        return '<section class="category" aria-label="' + esc(c.label) + '">' +
+          '<h2 class="section-label"><span>' + esc(c.label) + '</span></h2>' +
+          '<div class="grid">' + items.map(cardHTML).join('') + '</div></section>';
+      }).join('');
+
+      // ── Filter chips ──
+      var tags = [];
+      projects.forEach(function (p) { if (tags.indexOf(p.tag) === -1) tags.push(p.tag); });
+      var filtersEl = document.getElementById('filters');
+      filtersEl.innerHTML = ['All'].concat(tags).map(function (t) {
+        var n = t === 'All' ? projects.length : projects.filter(function (p) { return p.tag === t; }).length;
+        return '<button type="button" class="chip" data-filter="' + esc(t) + '" aria-pressed="' + (t === 'All') + '">' +
+          esc(t) + '<span class="chip-count">' + n + '</span></button>';
+      }).join('');
+
+      filtersEl.addEventListener('click', function (e) {
+        var chip = e.target.closest('.chip');
+        if (!chip) return;
+        var f = chip.getAttribute('data-filter');
+        filtersEl.querySelectorAll('.chip').forEach(function (c) {
+          c.setAttribute('aria-pressed', String(c === chip));
+        });
+        document.querySelectorAll('.category').forEach(function (sec) {
+          var visible = 0;
+          sec.querySelectorAll('.card').forEach(function (card) {
+            var show = f === 'All' || card.getAttribute('data-tag') === f;
+            card.hidden = !show;
+            if (show) visible++;
+          });
+          sec.hidden = visible === 0;
+        });
+      });
+
+      // ── Featured slideshow: the most recently added projects ──
+      var featured = projects.slice().sort(function (a, b) {
+        return (b.added || '').localeCompare(a.added || '');
+      }).slice(0, FEATURED_COUNT);
+
+      var slidesEl = document.getElementById('slides');
+      var dotsEl   = document.getElementById('dots');
+
+      slidesEl.innerHTML = featured.map(function (p, i) {
+        var cta = p.source ? actionsFor(p)
+          : '<div class="card-actions"><a class="btn btn-primary" href="' + esc(p.url) + '">Open ' + esc(p.title) + '</a></div>';
+        return '<div class="slide" role="group" aria-roledescription="slide" aria-label="' + (i + 1) + ' of ' + featured.length + '">' +
+          '<div class="slide-icon" aria-hidden="true">' + esc(p.icon) + '</div>' +
+          '<div><div class="slide-meta">' + badgeFor(p) + '<span class="card-tag">' + esc(p.tag) + '</span></div>' +
+          '<h3>' + esc(p.title) + '</h3><p>' + esc(p.desc) + '</p>' + cta + '</div></div>';
+      }).join('');
+
+      dotsEl.innerHTML = featured.map(function (p, i) {
+        return '<button type="button" class="dot" data-i="' + i + '" aria-label="Show ' + esc(p.title) + '"></button>';
+      }).join('');
+
+      var slideEls = slidesEl.children;
+      var current  = 0;
+      var timer    = null;
+      var reduced  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function go(i) {
+        current = (i + featured.length) % featured.length;
+        slidesEl.style.transform = 'translateX(' + (-100 * current) + '%)';
+        for (var k = 0; k < slideEls.length; k++) {
+          var on = k === current;
+          slideEls[k].setAttribute('aria-hidden', String(!on));
+          slideEls[k].inert = !on;
+          dotsEl.children[k].setAttribute('aria-current', String(on));
+        }
+      }
+
+      function stop()  { clearInterval(timer); timer = null; }
+      function start() {
+        stop();
+        if (!reduced && featured.length > 1) timer = setInterval(function () { go(current + 1); }, SLIDE_MS);
+      }
+
+      document.getElementById('prev').addEventListener('click', function () { go(current - 1); start(); });
+      document.getElementById('next').addEventListener('click', function () { go(current + 1); start(); });
+      dotsEl.addEventListener('click', function (e) {
+        var d = e.target.closest('.dot');
+        if (d) { go(+d.getAttribute('data-i')); start(); }
+      });
+
+      var viewport = document.getElementById('featured');
+      viewport.addEventListener('mouseenter', stop);
+      viewport.addEventListener('mouseleave', start);
+      viewport.addEventListener('focusin', stop);
+      viewport.addEventListener('focusout', start);
+
+      var touchX = null;
+      viewport.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; stop(); }, { passive: true });
+      viewport.addEventListener('touchend', function (e) {
+        if (touchX === null) return;
+        var dx = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(dx) > 40) go(current + (dx < 0 ? 1 : -1));
+        touchX = null;
+        start();
+      });
+
+      if (featured.length < 2) document.querySelector('.slide-controls').hidden = true;
+      go(0);
+      start();
+    }());
+  </script>
+
 
   <script>
     (function () {
